@@ -16,12 +16,27 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">Buffer</label>
+			<label class="col-sm-2 col-form-label">ROI Buffer</label>
 			<div class="col-sm-10">
 				<input v-model.number="params.Buffer" type="text" class="form-control">
 				<small class="form-text text-muted">The buffer (in pixels) added to the region of interest (RoI).  </small>
 			</div>
 		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Tile Size</label>
+			<div class="col-sm-10">
+				<input v-model.number="params.Size" type="text" class="form-control">
+				<small class="form-text text-muted">The size (pixels) of each image tile (a square).  </small>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Tile Overlap</label>
+			<div class="col-sm-10">
+				<input v-model.number="params.Overlap" type="text" class="form-control">
+				<small class="form-text text-muted"> The overlap (pixels) between neighboring tiles.  </small>
+			</div>
+		</div>
+
 		<button v-on:click="save" type="button" class="btn btn-primary">Save</button>
 	</template>
 </div>
@@ -45,6 +60,8 @@ export default {
 		if(!('URL' in params)) params.URL = '';
 		if(!('Zoom' in params)) params.Zoom = 17;
 		if(!('Buffer' in params)) params.Buffer = 128;
+		if(!('Size' in params)) params.Size = 256;
+		if(!('Overlap' in params)) params.Overlap = 0;
 		this.params = params;
 	},
 	methods: {

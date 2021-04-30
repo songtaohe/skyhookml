@@ -20,6 +20,8 @@ type Params struct {
 	URL string
 	Zoom int
 	Buffer int
+	Size int
+	Overlap int 
 }
 
 // TODO: Should split this into multiple tasks so that they can run in parallel. 
@@ -128,6 +130,7 @@ func SpatialFlowPartition(url string, outputDataset skyhook.Dataset, task skyhoo
 	// TODO: This is a O(n^2) implementation. Should improve it by using spatial index.
 	for i := startTile[0] - bufferTiles; i <= endTile[0] + bufferTiles; i++ {
 		for j := startTile[1] - bufferTiles; j <= endTile[1] + bufferTiles; j++ {
+	
 			total_tiles += 1
 
 			p1 := geocoords.MapboxToLonLat(gomapinfer.Point{0,0}, zoom, [2]int{i,j})
